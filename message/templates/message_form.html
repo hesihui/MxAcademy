@@ -13,25 +13,25 @@
     </h1>
     <label>
         <span>Name :</span>
-        <input id="name" type="text" name="name" class="error" placeholder="Please Enter Your Name"/>
+        <input id="name" type="text"  value={{ message_detail.name }} name="name" class="error" placeholder="Please Enter Your Name"/>
         <div class="error-msg"></div>
     </label>
 
     <label>
         <span>Email :</span>
-        <input id="email" type="email" value="" name="email" placeholder="Please Enter Your Email"/>
+        <input id="email" type="email" value="{{ message_detail.email }}" name="email" placeholder="Please Enter Your Email"/>
         <div class="error-msg"></div>
     </label>
 
     <label>
         <span>Address :</span>
-        <input id="address" type="text" value="" name="address" placeholder="Please Enter Your Address"/>
+        <input id="address" type="text" value="{{ message_detail.address }}" name="address" placeholder="Please Enter Your Address"/>
         <div class="error-msg"></div>
     </label>
 
     <label>
         <span>Message :</span>
-        <textarea id="message" name="message"  placeholder="Please Enter Your Message"></textarea>
+        <textarea id="message" name="message"  placeholder="Please Enter Your Message"> {{ message_detail.message }}</textarea>
         <div class="error-msg"></div>
     </label>
     <div class="success-msg"></div>
