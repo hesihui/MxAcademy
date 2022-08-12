@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+from datetime import datetime
+
+from apps.users.models import BaseModel
+
+class Course(BaseModel):
+
