@@ -3,8 +3,11 @@ from django.db import models
 from datetime import datetime
 
 from apps.users.models import BaseModel
+from apps.organizations.models import Teacher
+
 
 class Course(BaseModel):
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name="instructor")
     name = models.CharField(verbose_name="course name", max_length=50)
     desc = models.CharField(verbose_name="course description", max_length=300)
     learn_times = models.IntegerField(default=0, verbose_name="learning hours (in mins)")
@@ -25,6 +28,9 @@ class Course(BaseModel):
         verbose_name = "class info"
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.name
+
 
 class Lesson(BaseModel):
     # on-delete:
@@ -35,6 +41,9 @@ class Lesson(BaseModel):
     class Meta:
         verbose_name = "lesson chapters"
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
 
 
 class Video(BaseModel):
@@ -47,11 +56,18 @@ class Video(BaseModel):
         verbose_name = "video"
         verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.name
+
 
 class CourseResource(BaseModel):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name="name")
     file = models.FileField(upload_to="course/resource/%Y/%m", verbose_name= "download url", max_length=200)
+
     class Meta:
-        verbose_name = " course resouces"
+        verbose_name = " course resources"
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.name
