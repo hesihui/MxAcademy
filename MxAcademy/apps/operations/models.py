@@ -15,7 +15,7 @@ class UserAsk(BaseModel):
     course_name = models.CharField(max_length=50, verbose_name="course name")
 
     class Meta:
-        verbose_name = "user ask"
+        verbose_name = "User Ask"
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -28,7 +28,7 @@ class CourseComments(BaseModel):
     comments = models.CharField(max_length=200, verbose_name="comment contents")
 
     class Meta:
-        verbose_name = "course comments"
+        verbose_name = "Course Comments"
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -42,7 +42,7 @@ class UserFavorite(BaseModel):
                                    default=1, verbose_name="favorite/saved type")
 
     class Meta:
-        verbose_name = "user favorite"
+        verbose_name = "User Favorite"
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -55,7 +55,7 @@ class UserMessage(BaseModel):
     has_read = models.BooleanField(default=False, verbose_name="if the message has read")
 
     class Meta:
-        verbose_name = "user message"
+        verbose_name = "User Message"
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -68,7 +68,7 @@ class UserCourse(BaseModel):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="courses that users have studied")
 
     class Meta:
-        verbose_name = "courses that users have studied"
+        verbose_name = "Courses that Users Have Studied"
         verbose_name_plural = verbose_name
 
     def __str__(self):

@@ -7,25 +7,25 @@ from apps.organizations.models import Teacher
 
 
 class Course(BaseModel):
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name="instructor")
-    name = models.CharField(verbose_name="course name", max_length=50)
-    desc = models.CharField(verbose_name="course description", max_length=300)
-    learn_times = models.IntegerField(default=0, verbose_name="learning hours (in mins)")
-    degree = models.CharField(verbose_name="difficulty level", choices=(("cj", "elementary level"), ("zj", "intermediate level"), ("gj", "advanced level")), max_length=2)
-    students = models.IntegerField(default=0, verbose_name='student numbers')
-    fav_nums = models.IntegerField(default=0, verbose_name='number of saved')
-    click_nums = models.IntegerField(default=0, verbose_name="number of views")
-    notice = models.CharField(verbose_name="course announcement", max_length=300, default="")
-    category = models.CharField(default=u"Backend Development", max_length=20, verbose_name="course category")
-    tag = models.CharField(default="", verbose_name="course tags", max_length=10)
-    youneed_know = models.CharField(default="", max_length=300, verbose_name="course notes")
-    teacher_tell = models.CharField(default="", max_length=300, verbose_name="instructor words")
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name="Instructor")
+    name = models.CharField(verbose_name="Course Name", max_length=50)
+    desc = models.CharField(verbose_name="Course Description", max_length=300)
+    learn_times = models.IntegerField(default=0, verbose_name="Learning Hours (in mins)")
+    degree = models.CharField(verbose_name="Difficulty Level", choices=(("cj", "elementary level"), ("zj", "intermediate level"), ("gj", "advanced level")), max_length=2)
+    students = models.IntegerField(default=0, verbose_name='Student Numbers')
+    fav_nums = models.IntegerField(default=0, verbose_name='Number of Favorites')
+    click_nums = models.IntegerField(default=0, verbose_name="Number of Views")
+    notice = models.CharField(verbose_name="Course Announcement", max_length=300, default="")
+    category = models.CharField(default=u"Backend Development", max_length=20, verbose_name="Course Category")
+    tag = models.CharField(default="", verbose_name="Course Tags", max_length=10)
+    youneed_know = models.CharField(default="", max_length=300, verbose_name="Course Notes")
+    teacher_tell = models.CharField(default="", max_length=300, verbose_name="Instructor Words")
 
-    detail = models.TextField(verbose_name="course details")
-    image = models.ImageField(upload_to="courses/%Y/%m", verbose_name="cover pic", max_length=100)
+    detail = models.TextField(verbose_name="Course Details")
+    image = models.ImageField(upload_to="courses/%Y/%m", verbose_name="Cover Pic", max_length=100)
 
     class Meta:
-        verbose_name = "class info"
+        verbose_name = "Class Info"
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -35,11 +35,11 @@ class Course(BaseModel):
 class Lesson(BaseModel):
     # on-delete:
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, verbose_name=u"chapter title")
-    learn_time = models.IntegerField(default=0, verbose_name="learning hours in mins")
+    name = models.CharField(max_length=100, verbose_name=u"Chapter Title")
+    learn_time = models.IntegerField(default=0, verbose_name="Learning Hours in Mins")
 
     class Meta:
-        verbose_name = "lesson chapters"
+        verbose_name = "Lesson Chapters"
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -47,13 +47,13 @@ class Lesson(BaseModel):
 
 
 class Video(BaseModel):
-    lesson = models.ForeignKey(Lesson, verbose_name="chapter name", on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, verbose_name="video name")
-    learn_times = models.IntegerField(default=0, verbose_name="learning hours in mins")
-    url = models.CharField(max_length=200, verbose_name="video url")
+    lesson = models.ForeignKey(Lesson, verbose_name="Chapter Name", on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, verbose_name="Video Name")
+    learn_times = models.IntegerField(default=0, verbose_name="Learning Hours in Mins")
+    url = models.CharField(max_length=200, verbose_name="Video Url")
 
     class Meta:
-        verbose_name = "video"
+        verbose_name = "Video"
         verbose_name_plural = verbose_name
 
     def __str__(self):
@@ -62,11 +62,11 @@ class Video(BaseModel):
 
 class CourseResource(BaseModel):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, verbose_name="name")
-    file = models.FileField(upload_to="course/resource/%Y/%m", verbose_name= "download url", max_length=200)
+    name = models.CharField(max_length=100, verbose_name="Course Name")
+    file = models.FileField(upload_to="course/resource/%Y/%m", verbose_name= "Download Url", max_length=200)
 
     class Meta:
-        verbose_name = " course resources"
+        verbose_name = "Course Resources"
         verbose_name_plural = verbose_name
 
     def __str__(self):
