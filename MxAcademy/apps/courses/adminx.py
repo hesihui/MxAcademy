@@ -6,6 +6,7 @@ from apps.courses.models import Course, Lesson, Video, CourseResource
 class GlobalSettings(object):
     site_title = "MxAcademy Management System"
     site_footer = "MxAcademy Distant Learning"
+   # menu_style = "accordion"
 
 
 class BaseSettings(object):
