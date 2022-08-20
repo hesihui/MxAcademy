@@ -4,10 +4,12 @@ from datetime import datetime
 
 from apps.users.models import BaseModel
 from apps.organizations.models import Teacher
+from apps.organizations.models import CourseOrg
 
 
 class Course(BaseModel):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, verbose_name="Instructor")
+    course_org = models.ForeignKey(CourseOrg, null=True, blank=True, on_delete=models.CASCADE, verbose_name="course organization")
     name = models.CharField(verbose_name="Course Name", max_length=50)
     desc = models.CharField(verbose_name="Course Description", max_length=300)
     learn_times = models.IntegerField(default=0, verbose_name="Learning Hours (in mins)")
@@ -20,6 +22,7 @@ class Course(BaseModel):
     tag = models.CharField(default="", verbose_name="Course Tags", max_length=10)
     youneed_know = models.CharField(default="", max_length=300, verbose_name="Course Notes")
     teacher_tell = models.CharField(default="", max_length=300, verbose_name="Instructor Words")
+    is_classics = models.BooleanField(default=False, verbose_name="If a Featured Course")
 
     detail = models.TextField(verbose_name="Course Details")
     image = models.ImageField(upload_to="courses/%Y/%m", verbose_name="Cover Pic", max_length=100)

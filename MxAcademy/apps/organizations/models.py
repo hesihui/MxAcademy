@@ -27,7 +27,15 @@ class CourseOrg(BaseModel):
     address = models.CharField(max_length=150, verbose_name="Org Address")
     students = models.IntegerField(default=0, verbose_name="Number of Students")
     course_nums = models.IntegerField(default=0, verbose_name="Number of Courses")
+
+    is_auth = models.BooleanField(default=False, verbose_name="if certificated")
+    is_gold = models.BooleanField(default=False, verbose_name="if get best award")
     city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name="Currently Located City")
+
+    # 因为course org是course的外键，则可以通过self.course_set()反向取到course
+    def courses(self):
+        courses = self.course_set.filter(is_classics=True)[:3]
+        return courses
 
     class Meta:
         verbose_name = "Course Organization"

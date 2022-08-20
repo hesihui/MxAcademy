@@ -1,36 +1,43 @@
 from django.shortcuts import render
 from django.views.generic.base import View
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 from apps.users.models import UserProfile
+from apps.users.forms import LoginForm
 
+
+class LogoutView(View):
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return HttpResponseRedirect(reverse("index"))
 
 
 class LoginView(View):
     def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return HttpResponseRedirect(reverse("index"))
         return render(request, "login.html")
 
     def post(self, request, *args, **kwargs):
-        user_name = request.POST.get("username", "")
-        password = request.POST.get("password", "")
+        login_form = LoginForm(request.POST)
 
-        if not user_name:
-            return render(request, "login.html", {"msg": "Please enter your user name! "})
-        if not password:
-            return render(request, "login.html", {"msg": "Please enter your password! "})
-
+        if login_form.is_valid():
         # check if user and password exist via user obj
-        user = authenticate(username=user_name, password=password)
-        if user is not None:
-            # if user exists
-            login(request, user)
-            # after login, direct to the home page
-
-
-            return HttpResponseRedirect(reverse("index"))
+            user_name = login_form.cleaned_data["username"]
+            password = login_form.cleaned_data["password"]
+            user = authenticate(username=user_name, password=password)
+            if user is not None:
+                # if user exists
+                login(request, user)
+                # after login, direct to the home page
+                return HttpResponseRedirect(reverse("index"))
+            else:
+                # if user does not exist
+                return render(request, "login.html",
+                              {"msg": "user or password is not matched", "login_form": login_form})
         else:
-            # if user does not exist
-            return render(request, "login.html", {"msg": "user or password is not matched"})
+            # if login fails
+            return render(request, "login.html", {"login_form": login_form})
 
