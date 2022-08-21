@@ -31,8 +31,13 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name="index.html"), name="index"),
     path('login/', LoginView.as_view(), name="login"),
     path('logout/', LogoutView.as_view(), name="logout"),
+
+    # config uploaded file url
     url(r'^media/(?P<path>.*)$', serve, {"document_root": MEDIA_ROOT}),
 
-    # organization
-    url(r'^org_list/', OrgView.as_view(), name="org_list"),
+    # organization urls config
+    url(r'^org/', include(('apps.organizations.urls', "organizations"), namespace="org")),
+
+    # User operations urls config
+    url(r'^op/', include(('apps.operations.urls', "operations"), namespace="op")),
 ]

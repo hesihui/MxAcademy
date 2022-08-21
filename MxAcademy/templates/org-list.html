@@ -6,7 +6,7 @@
 <section>
     <div class="wp">
         <ul  class="crumbs">
-            <li><a href="{% url 'index' %}">Home</a>></li>
+            <li><a href="{% url 'index' %}">Home</a></li>
             <li>Organization</li>
         </ul>
     </div>
@@ -33,10 +33,10 @@
 					</div>
 				</li>
 				<li>
-					<h2>所在地区</h2>
-					<div class="more">更多</div>
+					<h2>Located City: </h2>
+					<div class="more">More</div>
 					<div class="cont">
-                        <a href="?ct={{ category }}"><span class="{% ifequal city_id  '' %}active2{% endifequal %}">全部</span></a>
+                        <a href="?ct={{ category }}"><span class="{% ifequal city_id  '' %}active2{% endifequal %}">All</span></a>
                             {% for city in all_citys %}
                                 <a href="?city={{ city.id }}&ct={{ category }}"><span class="{% ifequal city_id city.id|stringformat:'i' %}active2{% endifequal %}">{{ city.name }}</span></a>
                             {% endfor %}

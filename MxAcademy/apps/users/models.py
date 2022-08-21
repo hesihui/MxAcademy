@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
-from datetime import datetime
+from django.utils import timezone
+import datetime
 
 GENDER_CHOICES = (
     ("male", "male"),
@@ -11,7 +11,7 @@ GENDER_CHOICES = (
 # use inheritance to share the base value
 #  => created a base model at the lowest level of data
 class BaseModel(models.Model):
-    created_time = models.DateTimeField(default=datetime.now, verbose_name="created time")
+    created_time = models.DateTimeField(default=datetime.datetime.now(tz=timezone.utc), verbose_name="created time")
 
     class Meta:
         abstract = True
