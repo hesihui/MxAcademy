@@ -59,7 +59,7 @@
                     <div class="searchbox fr">
                         <div class="selectContainer fl">
                             <span class="selectOption" id="jsSelectOption" data-value="{% if s_type %}{{ s_type }}{% else %}course{% endif %}">
-                                {% if s_type == 'course' %}公开课{% endif %}
+                            {% if s_type == 'course' %}公开课{% endif %}
                             {% if s_type == 'org' %}课程机构{% endif %}
                             {% if s_type == 'teacher' %}授课老师{% endif %}
                             </span>
@@ -82,14 +82,18 @@
 						<ul>
 							<li class="{% if request.path == '/' %}active{% endif %}" ><a href="{% url 'index' %}">首页</a></li>
 							<li class="{% if request.path|slice:'7' == '/course' %}active{% endif %}">
-{#								<a href="{% url 'course:list' %}">#}
-{#									公开课<img class="hot" src="{% static 'images/nav_hot.png' %}">#}
-{#								</a>#}
+								<a href="{% url 'course:list' %}">
+									公开课<img class="hot" src="{% static 'images/nav_hot.png' %}">
+								</a>
 							</li>
 {#							<li class="{% if request.path|slice:'13' == '/org/teachers' %}active{% endif %}">#}
 {#								<a href="{% url 'org:teachers' %}">授课教师</a>#}
 {#							</li>#}
-							<li class="{% if request.path|slice:'13' != '/org/teachers' %}{% if request.path|slice:'4' == '/org' %}active{% endif %}{% endif %}" ><a href="{% url 'org:list' %}">授课机构</a></li>
+							<li class="{% if request.path|slice:'13' != '/org/teachers' %}
+                                        {% if request.path|slice:'4' == '/org' %}active{% endif %}
+                                        {% endif %}" >
+                                <a href="{% url 'org:list' %}">授课机构</a>
+                            </li>
 						</ul>
 					</div>
 				</div>

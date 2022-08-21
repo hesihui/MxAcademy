@@ -40,4 +40,9 @@ urlpatterns = [
 
     # User operations urls config
     url(r'^op/', include(('apps.operations.urls', "operations"), namespace="op")),
+
+    # course urls config
+    url(r'^course/', include(('apps.courses.urls', "courses"), namespace="course")),
+
+    
 ]

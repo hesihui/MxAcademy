@@ -13,7 +13,7 @@ class Course(BaseModel):
     name = models.CharField(verbose_name="Course Name", max_length=50)
     desc = models.CharField(verbose_name="Course Description", max_length=300)
     learn_times = models.IntegerField(default=0, verbose_name="Learning Hours (in mins)")
-    degree = models.CharField(verbose_name="Difficulty Level", choices=(("cj", "elementary level"), ("zj", "intermediate level"), ("gj", "advanced level")), max_length=2)
+    degree = models.CharField(verbose_name="Difficulty Level", choices=(("cj", "Elementary Level"), ("zj", "Intermediate Level"), ("gj", "Advanced Level")), max_length=2)
     students = models.IntegerField(default=0, verbose_name='Student Numbers')
     fav_nums = models.IntegerField(default=0, verbose_name='Number of Favorites')
     click_nums = models.IntegerField(default=0, verbose_name="Number of Views")
@@ -28,7 +28,7 @@ class Course(BaseModel):
     image = models.ImageField(upload_to="courses/%Y/%m", verbose_name="Cover Pic", max_length=100)
 
     class Meta:
-        verbose_name = "Class Info"
+        verbose_name = "Course Info"
         verbose_name_plural = verbose_name
 
     def __str__(self):

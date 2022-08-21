@@ -16,6 +16,7 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
+
 class UserProfile(AbstractUser):
     nick_name = models.CharField(max_length=50, verbose_name="nick name", default="")
     birthday = models.DateField(verbose_name="birthday", null=True, blank=True)
