@@ -24,6 +24,7 @@ class Course(BaseModel):
     teacher_tell = models.CharField(default="", max_length=300, verbose_name="Instructor Words")
     is_classics = models.BooleanField(default=False, verbose_name="If a Featured Course")
 
+    notice = models.CharField(verbose_name="Course Announcement", max_length=300, default="")
     detail = models.TextField(verbose_name="Course Details")
     image = models.ImageField(upload_to="courses/%Y/%m", verbose_name="Cover Pic", max_length=100)
 
@@ -34,9 +35,23 @@ class Course(BaseModel):
     def __str__(self):
         return self.name
 
+    def lesson_nums(self):
+        return self.lesson_set.all().count()
+
+
+class CourseTag(BaseModel):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Course Name")
+    tag = models.CharField(max_length=100, verbose_name="Tags")
+
+    class Meta:
+        verbose_name = "Course Tags"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.tag
+
 
 class Lesson(BaseModel):
-    # on-delete:
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, verbose_name=u"Chapter Title")
     learn_time = models.IntegerField(default=0, verbose_name="Learning Hours in Mins")
@@ -65,7 +80,7 @@ class Video(BaseModel):
 
 class CourseResource(BaseModel):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    name = models.CharField(max_length=100, verbose_name="Course Name")
+    name = models.CharField(max_length=100, verbose_name="File Name")
     file = models.FileField(upload_to="course/resource/%Y/%m", verbose_name= "Download Url", max_length=200)
 
     class Meta:

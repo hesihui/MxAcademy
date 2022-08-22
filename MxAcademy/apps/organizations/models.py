@@ -37,6 +37,9 @@ class CourseOrg(BaseModel):
         courses = self.course_set.filter(is_classics=True)[:3]
         return courses
 
+    def teachers(self):
+        return self.teacher_set.all().count()
+
     class Meta:
         verbose_name = "Course Organization"
         verbose_name_plural = verbose_name

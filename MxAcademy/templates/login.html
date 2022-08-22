@@ -70,7 +70,7 @@
                 <div class="tab">
                     <h2 class="active">Account</h2>
                 </div>
-                <form class="tab-form" action="{% url 'login' %}" method="post" autocomplete="off" id="form1">
+                <form class="tab-form" action="{% url 'login' %}?next={{ next }}" method="post" autocomplete="off" id="form1">
                     <div class="form-group marb20 ">
                         <input name="username" id="account_l" value="{{ login_form.username.value }}" type="text" placeholder="手机号/邮箱" />
                     </div>
