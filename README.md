@@ -2,7 +2,7 @@
 
 MxAcademy is an online distance learning platform using Django and MySql. Frontend HTML pages are integrated with Django Templates. 
 
-#### Environment Requirements:
+## Environment Requirements:
 
 - Django 2.2
 - Python 3.7
@@ -11,7 +11,7 @@ MxAcademy is an online distance learning platform using Django and MySql. Fronte
 
 \---
 
-### Client-Side Features:
+## Client-Side Features:
 
 - Basic:
   - Registration, User Center, Global Search
@@ -27,7 +27,7 @@ MxAcademy is an online distance learning platform using Django and MySql. Fronte
 
 \---
 
-### Admin-Side Features (customized with Django Admin):
+## Admin-Side Features (customized with Django Admin):
 
 - Course Management
 - Authentication and Authority Management 
