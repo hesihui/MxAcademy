@@ -44,5 +44,7 @@ urlpatterns = [
     # course urls config
     url(r'^course/', include(('apps.courses.urls', "courses"), namespace="course")),
 
-    
+    # user center urls config 
+    url(r'^users/', include(('apps.users.urls', "users"), namespace="users")),
+
 ]

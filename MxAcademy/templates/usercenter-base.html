@@ -46,12 +46,12 @@
                                 </div>
                             </div>
                             {% else %}
-                            <a style="color:white" class="fr registerbtn" href="{% url 'register' %}">注册</a>
+                            <a style="color:white" class="fr registerbtn" href="{% url 'login' %}">注册</a>
                             <a style="color:white" class="fr loginbtn" href="{% url 'login' %}">登录</a>
                         {% endif %}
-                        <a href="{% url 'users:messages' %}">
-                            <div class="msg-num"><span id="MsgNum">{{ unread_nums }}</span></div>
-                        </a>
+{#                        <a href="{% url 'users:messages' %}">#}
+{#                            <div class="msg-num"><span id="MsgNum">{{ unread_nums }}</span></div>#}
+{#                        </a>#}
 				</div>
 			</div>
 
@@ -74,13 +74,13 @@
 	<div class="left">
         <ul>
             <li class="{% if current_page == 'info' %}active2{% endif %}"><a href="{% url 'users:info' %}">个人资料</a></li>
-            <li class="{% if current_page == 'mycourse' %}active2{% endif %}"><a href="{% url 'users:mycourse' %}">我的课程</a></li>
-            <li class="{% if current_page == 'myfavorg' or current_page == 'myfav_teacher' or current_page == 'myfav_course' %}active2{% endif %}"><a href="{% url 'users:myfavorg' %}">我的收藏</a></li>
-            <li class="{% if current_page == 'message' %}active2{% endif %}">
-                <a href="{% url 'users:messages' %}" style="position: relative;">
-                    我的消息
-                </a>
-            </li>
+{#            <li class="{% if current_page == 'mycourse' %}active2{% endif %}"><a href="{% url 'users:mycourse' %}">我的课程</a></li>#}
+{#            <li class="{% if current_page == 'myfavorg' or current_page == 'myfav_teacher' or current_page == 'myfav_course' %}active2{% endif %}"><a href="{% url 'users:myfavorg' %}">我的收藏</a></li>#}
+{#            <li class="{% if current_page == 'message' %}active2{% endif %}">#}
+{#                <a href="{% url 'users:messages' %}" style="position: relative;">#}
+{#                    我的消息#}
+{#                </a>#}
+{#            </li>#}
         </ul>
 	</div>
     {% block rigt_form %}
@@ -113,7 +113,7 @@
                            <input type="text" name="nick_name" id="nick_name" value="django" maxlength="10">
                             <i class="error-tips"></i>
                         </li>
-						<li>生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：
+						<li>生日：
                            <input type="text" id="birth_day" name="birday" value="2009年9月2日" readonly="readonly"/>
                             <i class="error-tips"></i>
 						</li>
@@ -199,29 +199,6 @@
         </div>
     </div>
 
-    <!--手机修改-->
-    <div class="dialogbox changephone changephone1" id="jsChangePhoneDialog" style="display: none; margin-top: 81px;">
-        <h1>修改手机号码</h1>
-        <div class="close jsCloseDialog"><img src="{% static 'images/dig_close.png' %}"></div>
-        <p>请输入新的手机号码</p>
-        <form id="jsChangePhoneForm" method="post" autocomplete="off">
-            <div class="box">
-                <input class="fl change_mobile" type="text" id="jsChangePhone" name="mobile" autocomplete="off" placeholder="输入重新绑定的手机号码">
-            </div>
-            <div class="box">
-                {{ captcha_form.captcha }}
-            </div>
-            <div class="box">
-                <input class="fl" type="text" id="jsChangePhoneCode" name="code" placeholder="输入手机验证码">
-                <input class="getcode getting" type="button" id="jsChangePhoneCodeBtn" value="获取验证码">
-            </div>
-            <div class="error btns" id="jsChangePhoneTips" style="display: none;"></div>
-            <div class="button">
-                <input type="button" value="完成" id="jsChangePhoneBtn">
-            </div>
-        {% csrf_token %}
-        </form>
-    </div>
     <div class="resetpassbox dialogbox" id="jsSetNewPwd">
         <h1>重新设置密码</h1>
         <div class="close jsCloseDialog"><img src="{% static 'images/dig_close.png' %}"/></div>
@@ -257,7 +234,16 @@
                 </div>
                 <div class="box">
                     <span class="word3">验证码</span>
-                    <input autocomplete="off" class="form-control-captcha find-password-captcha" id="find-password-captcha_1" name="captcha_f_1" placeholder="请输入验证码" type="text" /> <input class="form-control-captcha find-password-captcha" id="find-password-captcha_0" name="captcha_f_0" placeholder="请输入验证码" type="hidden" value="5f3c00e47fb1be12d2fd15b9a860711597721b3f" /> &nbsp;<img src="/captcha/image/5f3c00e47fb1be12d2fd15b9a860711597721b3f/" alt="captcha" class="captcha" />
+                    <input autocomplete="off"
+                           class="form-control-captcha find-password-captcha"
+                           id="find-password-captcha_1"
+                           name="captcha_f_1"
+                           placeholder="请输入验证码" type="text" />
+                    <input class="form-control-captcha find-password-captcha"
+                           id="find-password-captcha_0" name="captcha_f_0"
+                           placeholder="请输入验证码" type="hidden"
+                           value="5f3c00e47fb1be12d2fd15b9a860711597721b3f" /> &nbsp;
+                    <img src="/captcha/image/5f3c00e47fb1be12d2fd15b9a860711597721b3f/" alt="captcha" class="captcha" />
                 </div>
                 <div class="error btns" id="jsForgetTips"></div><!--忘记密码错误-->
                 <div class="button">

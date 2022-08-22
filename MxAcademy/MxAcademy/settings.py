@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'apps.organizations.apps.OrganizationsConfig',
     'apps.operations.apps.OperationsConfig',
     'crispy_forms',
+    'captcha',
     'xadmin.apps.XAdminConfig',
     'DjangoUeditor',
     'pure_pagination',
@@ -129,6 +130,13 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+#redis config
+REDIS_HOST = "127.0.0.1"
+REDIS_PORT = 6379
+# brew install redis
+# redis-server
+# redis-cli
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
