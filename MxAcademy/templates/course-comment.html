@@ -65,7 +65,7 @@
                     <!-- Submit Comments-->
                     <div id="js-pub-container" class="issques clearfix js-form">
                         <div class="wgt-ipt-wrap pub-editor-wrap " id="js-pl-input-fake">
-                            <textarea id="js-pl-textarea" class="" placeholder="扯淡、吐槽、表扬、鼓励……想说啥就说啥！" ></textarea>
+                            <textarea id="js-pl-textarea" class="" placeholder="Please Comment Your Thoughts" ></textarea>
                         </div>
                         <input type="button" id="js-pl-submit" class="pub-btn" data-cid="452" value="发表评论">
                         <p class="global-errortip js-global-error"></p>
@@ -109,11 +109,11 @@
                     <div class="box mb40">
                         <h4>讲师提示</h4>
                         <div class="teacher-info">
-                            <a href="{% url 'org:teacher_detail' course.teacher.id %}" target="_blank">
-                                <img src='{{ course.teacher.image.url }}' width='80' height='80' />
-                            </a>
+                        <a href="{% url 'org:teacher_detail' course.teacher.id %}"  target="_blank">
+                            <img src='{{ course.teacher.image.url }}'  width='80' height='80' />
+                        </a>
         <span class="tit">
-          <a href="{% url 'org:teacher_detail' course.teacher.id %}" target="_blank">{{ course.teacher.name }}</a>
+          <a href="{% url 'org:teacher_detail' course.teacher.id %}"  target="_blank">{{ course.teacher.name }}</a>
         </span>
                             <span class="job">{{ course.teacher.work_position }}</span>
                         </div>
@@ -162,7 +162,7 @@
 {% endblock %}
 {% block custom_js %}
 <script type="text/javascript">
-    //添加评论
+    //add a new comment
     $(document).ready(function() {
         $('#js-pl-submit').on('click', function () {
             var comments = $("#js-pl-textarea").val()
@@ -187,7 +187,7 @@
                             alert(data.msg)
                         }
                     } else if (data.status == 'success') {
-                        window.location.reload();//刷新当前页面.
+                        window.location.reload();//refresh the current page
                     }
                 },
             });

@@ -8,6 +8,7 @@ class UserFavForm(forms.ModelForm):
         model = UserFavorite
         fields = ["fav_id", "fav_type"]
 
+
 class CommentsForm(forms.ModelForm):
     class Meta:
         model = CourseComments

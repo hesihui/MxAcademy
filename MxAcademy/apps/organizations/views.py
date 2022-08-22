@@ -2,11 +2,69 @@ from django.shortcuts import render
 from django.views.generic.base import View
 from pure_pagination import Paginator, PageNotAnInteger
 from django.http import JsonResponse
+from django.db.models import Q
 
 from apps.organizations.models import CourseOrg
 from apps.organizations.models import City, Teacher
 from apps.operations.models import UserFavorite
 from apps.organizations.forms import AddAskForm
+
+
+class TeacherDetailView(View):
+    def get(self, request, teacher_id, *args, **kwargs):
+        teacher = Teacher.objects.get(id=int(teacher_id))
+
+        teacher_fav = False
+        org_fav = False
+        if request.user.is_authenticated:
+            if UserFavorite.objects.filter(user=request.user, fav_type=3, fav_id=teacher.id):
+                teacher_fav = True
+            if UserFavorite.objects.filter(user=request.user, fav_type=2, fav_id=teacher.org.id):
+                org_fav = True
+
+        hot_teachers = Teacher.objects.all().order_by("-click_nums")[:3]
+        return render(request, "teacher-detail.html", {
+            "teacher": teacher,
+            "teacher_fav": teacher_fav,
+            "org_fav": org_fav,
+            "hot_teachers": hot_teachers
+        })
+
+
+class TeacherListView(View):
+    def get(self, request, *args, **kwargs):
+        all_teachers = Teacher.objects.all()
+        teacher_nums = all_teachers.count()
+
+        hot_teachers = Teacher.objects.all().order_by("-click_nums")[:3]
+
+        keywords = request.GET.get("keywords", "")
+        s_type = "teacher"
+        if keywords:
+            all_teachers = all_teachers.filter(Q(name__icontains=keywords))
+
+        # Sorting instructors by click numbers
+        sort = request.GET.get("sort", "")
+        if sort == "hot":
+            all_teachers = all_teachers.order_by("-click_nums")
+
+        # Pagination instructor pages
+        try:
+            page = request.GET.get('page', 1)
+        except PageNotAnInteger:
+            page = 1
+
+        p = Paginator(all_teachers, per_page=1, request=request)
+        teachers = p.page(page)
+
+        return render(request, "teachers-list.html", {
+            "teachers": teachers,
+            "teacher_nums": teacher_nums,
+            "sort": sort,
+            "hot_teachers": hot_teachers,
+            "keywords": keywords,
+            "s_type": s_type
+        })
 
 
 class OrgDescView(View):

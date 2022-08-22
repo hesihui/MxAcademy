@@ -11,12 +11,13 @@ from apps.organizations.models import CourseOrg, Teacher
 class CommentView(View):
     def post(self, request, *args, **kwargs):
         """
-        用户收藏，取消收藏
+        User comments
         """
+        # check if user is login
         if not request.user.is_authenticated:
             return JsonResponse({
-                "status":"fail",
-                "msg":"用户未登录"
+                "status": "fail",
+                "msg": "User didn't login"
             })
 
         comment_form = CommentsForm(request.POST)
@@ -36,7 +37,7 @@ class CommentView(View):
         else:
             return JsonResponse({
                 "status": "fail",
-                "msg": "参数错误"
+                "msg": "Parameter Error"
             })
 
 
