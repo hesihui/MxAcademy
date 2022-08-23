@@ -1,6 +1,8 @@
 from django.conf.urls import url
-from django.views.generic import TemplateView,UploadImageView
+from django.views.generic import TemplateView
 from django.contrib.auth.decorators import login_required
+
+from apps.users.views import UserInfoView, UploadImageView
 
 from apps.users.views import UserInfoView
 urlpatterns = [

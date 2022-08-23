@@ -6,9 +6,9 @@
 <section>
     <div class="wp">
         <ul  class="crumbs">
-            <li><a href="{% url 'index' %}">首页</a>></li>
-            <li><a href="{% url 'course:list' %}">公开课</a>></li>
-            <li>课程详情</li>
+            <li><a href="{% url 'index' %}">Home</a>></li>
+            <li><a href="{% url 'course:list' %}">Courses</a>></li>
+            <li>Details</li>
         </ul>
     </div>
 </section>
@@ -31,24 +31,19 @@
                     <h1 title="django 从入门到精通体验开始了">{{ course.name }}</h1>
                    <span class="key">{{ course.desc }}</span>
                     <div class="prize">
-                        <span class="fl">难度：<i class="key">{{ course.get_degree_display }}</i></span>
-                        <span class="fr">学习人数：{{ course.students }}</span>
+                        <span class="fl">Level：<i class="key">{{ course.get_degree_display }}</i></span>
+                        <span class="fr">Students：{{ course.students }}</span>
 					</div>
                     <ul class="parameter">
-                       	<li><span class="pram word3">时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长：</span><span>{{ course.learn_times }}</span></li>
-                        <li><span class="pram word3">章&nbsp;节&nbsp;数：</span><span>{{ course.lesson_nums }}</span></li>
-                        <li><span class="pram word3">课程类别：</span><span title="">{{ course.category }}</span></li>
-                        <li class="piclist"><span class="pram word4">学习用户：</span>
-
-                                <span class="pic"><img width="40" height="40" src="../media/image/2016/12/default_big_14.png"/></span>
-
-                        </li>
+                       	<li><span class="pram word3">Hours：</span><span>{{ course.learn_times }}</span></li>
+                        <li><span class="pram word3">Chapter Nums：</span><span>{{ course.lesson_nums }}</span></li>
+                        <li><span class="pram word3">Category：</span><span title="">{{ course.category }}</span></li>
                     </ul>
                     <div class="btns">
                         <div class="btn colectgroupbtn"  id="jsLeftBtn">
                               {% if has_fav_course %}Unsubscribe{% else %}Subscribe{% endif %}
                         </div>
-                            <div class="buy btn"><a style="color: white" href="{% url 'course:lesson' course.id %}">开始学习</a></div>
+                            <div class="buy btn"><a style="color: white" href="{% url 'course:lesson' course.id %}">Access Contents!</a></div>
                     </div>
                 </div>
                 <div class="group-share-box">
@@ -69,8 +64,8 @@
             </div>
             <div class="right">
                 <div class="head">
-                    <h1>授课机构</h1>
-                    <p>世界名校，课程权威</p>
+                    <h1>Organizations</h1>
+                    <p></p>
                 </div>
                 <div class="pic">
                     <a href="{% url 'org:home' course.course_org.id %}">
@@ -84,12 +79,12 @@
                 <div class="clear">
                     <ul>
                         <li>
-                            <span>课 &nbsp;程&nbsp; 数：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   {{ course.course_org.course_set.all.count }}</span>
+                            <span>Course Nums:   {{ course.course_org.course_set.all.count }}</span>
                         </li>
                         <li>
-                            <span>教 &nbsp;师&nbsp; 数：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  {{ course.course_org.teacher_set.all.count }}</span>
+                            <span>Instructor Nums:  {{ course.course_org.teacher_set.all.count }}</span>
                         </li>
-                        <li>所在地区：&nbsp;&nbsp;{{ course.course_org.address }}</li>
+                        <li>Location: {{ course.course_org.address }}</li>
                     </ul>
                 </div>
             </div>
@@ -103,7 +98,7 @@
         <div class="left layout">
             <div class="head">
                 <ul class="tab_header">
-                    <li class="active">课程详情</li>
+                    <li class="active">Details</li>
                 </ul>
             </div>
             <div class="tab_cont tab_cont1">
@@ -118,7 +113,7 @@
             </div>
         </div>
         <div class="right layout">
-            <div class="head">相关课程推荐</div>
+            <div class="head">Other Courses: </div>
             <div class="group_recommend">
 
                     {% for course in related_courses %}
