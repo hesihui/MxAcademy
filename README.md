@@ -25,6 +25,20 @@ MxAcademy is an online distance learning platform using Django and MySql. Fronte
   - Comments
   - Subscription
 
+#### Demo Pic:
+
+course list page
+
+<img src="https://raw.githubusercontent.com/hesihui/MxAcademy/main/demo_pic/course-page1.jpg"/>
+
+course details page
+
+<img src="https://raw.githubusercontent.com/hesihui/MxAcademy/main/demo_pic/course-page2.png"/>
+
+course contents page
+
+<img src="https://github.com/hesihui/MxAcademy/blob/main/demo_pic/course-page3.png"/>
+
 
 
 ## Admin-Side Features (customized with Django Admin):
