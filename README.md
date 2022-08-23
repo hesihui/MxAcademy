@@ -39,6 +39,10 @@ course contents page
 
 <img src="https://github.com/hesihui/MxAcademy/blob/main/demo_pic/course-page3.png"/>
 
+organization page
+
+<img src="https://raw.githubusercontent.com/hesihui/MxAcademy/main/demo_pic/org-page1.png"/>
+
 
 
 ## Admin-Side Features (customized with Django Admin):
@@ -46,6 +50,28 @@ course contents page
 - Course Management
 - Authentication and Authority Management 
 - Course Organization Management
+
+Admin system 
+
+<img src="https://raw.githubusercontent.com/hesihui/MxAcademy/main/demo_pic/management1.png"/>
+
+<img src="https://raw.githubusercontent.com/hesihui/MxAcademy/main/demo_pic/management2.png"/>
+
+## Configuration
+
+setting.py
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "<db name>",
+        'USER': "root",
+        'PASSWORD': "<password>",
+        'HOST': "127.0.0.1"
+    }
+}
+```
 
 
 
